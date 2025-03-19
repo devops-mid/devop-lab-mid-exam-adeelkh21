@@ -1,18 +1,155 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simple Web App</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Dark Web App</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <style>
+        /* General Page Styling */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: radial-gradient(circle, #0f0c29, #302b63, #24243e);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+            color: #fff;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 600;
+            text-shadow: 3px 3px 15px rgba(255, 255, 255, 0.2);
+            margin-bottom: 15px;
+        }
+
+        /* Neon-glow Form */
+        .form-container {
+            background: rgba(25, 25, 25, 0.9);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0px 5px 30px rgba(0, 0, 0, 0.5);
+            width: 400px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        label {
+            font-size: 1rem;
+            font-weight: bold;
+            display: block;
+            margin-top: 10px;
+            color: #ddd;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            margin-top: 5px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            outline: none;
+            color: #fff;
+            background: #1c1c1c;
+            box-shadow: 0px 0px 10px rgba(0, 255, 255, 0.2);
+            transition: 0.3s;
+        }
+
+        input:focus {
+            background: #222;
+            box-shadow: 0px 0px 12px rgba(0, 255, 255, 0.6);
+        }
+
+        /* Submit Button */
+        input[type="submit"] {
+            background: linear-gradient(135deg, #ff00ff, #ff007f);
+            color: white;
+            font-size: 1rem;
+            font-weight: bold;
+            padding: 12px;
+            border: none;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: all 0.3s ease-in-out;
+            margin-top: 20px;
+            box-shadow: 0px 0px 10px rgba(255, 0, 255, 0.5);
+        }
+
+        input[type="submit"]:hover {
+            transform: scale(1.05);
+            background: linear-gradient(135deg, #ff007f, #ff00ff);
+            box-shadow: 0px 5px 15px rgba(255, 0, 255, 0.7);
+        }
+
+        /* Animation */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+
+    <script>
+        function validateForm() {
+            let email = document.getElementById("email").value;
+            let phone = document.getElementById("phone").value;
+            let emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+            let phonePattern = /^\d{10}$/;
+
+            if (!emailPattern.test(email)) {
+                alert("Invalid email format! Please enter a valid email.");
+                return false;
+            }
+
+            if (!phonePattern.test(phone)) {
+                alert("Invalid phone number! It must be exactly 10 digits.");
+                return false;
+            }
+            return true;
+        }
+    </script>
 </head>
+
 <body>
-    <h1>Welcome to the Simple Web App</h1>
-    <form action="/submit" method="post">
-        Name: <input type="text" name="name" required><br>
-        Email: <input type="email" name="email" required><br>
-        Phone: <input type="text" name="phone"><br>
-        <input type="submit" value="Submit">
-    </form>
+
+    <div class="form-container">
+        <h1>Adeel's Web App</h1>
+        <form action="/submit" method="post" onsubmit="return validateForm()">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="fathername">Father's Name:</label>
+            <input type="text" id="fathername" name="fathername" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="phone">Phone:</label>
+            <input type="text" id="phone" name="phone" required>
+
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+
 </body>
+
 </html>
